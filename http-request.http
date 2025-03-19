@@ -1,0 +1,25 @@
+###
+POST http://localhost:8080/api/samples
+Content-Type: application/json
+
+{
+  "title": "first",
+  "description": "first"
+}
+
+###
+GET http://localhost:8080/api/samples/1
+
+
+
+###
+GET http://localhost:8080/api/samples/search/description?
+    description={{$random.alphanumeric(8)}}
+
+
+
+###
+GET http://localhost:8080/api/samples/search/title?
+    title={{$random.alphanumeric(8)}}
+
+###
