@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.context.ServletWebServerInitializedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -98,6 +100,8 @@ class SampleService {
 @RestController
 @RequestMapping("/api/samples")
 class SampleController {
+
+
     @Autowired
     private SampleService service;
 
@@ -129,6 +133,11 @@ class SampleController {
     @DeleteMapping("/{id}")
     public void deleteSample(@PathVariable Integer id) {
         service.deleteById(id);
+    }
+
+    @EventListener
+    public void on(ServletWebServerInitializedEvent event) {
+        System.out.println("event: webserver " + event.getWebServer() + "started on " + event.getWebServer().getPort() + "!");
     }
 }
 
