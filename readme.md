@@ -1,0 +1,1 @@
+# just dummy spring app to check the dumb mode
